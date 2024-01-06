@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../../contexts/auth'
 
 import logo from '../../assets/logo.png'
 
@@ -7,13 +8,23 @@ export default function SignIn(){
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const { signIn } = useContext(AuthContext)
+
+  function handleSignIn(e){
+    e.preventDefault()
+
+    if(email !== '' && password !== ''){
+      signIn(email, password)
+    }
+  }
+
   return(
     <div className='flex flex-col items-center'>
       <div className='h-44 w-44'>
         <img src={logo} alt="Logo do sistema de chamadas" />
       </div>
 
-      <form action="" >
+      <form onSubmit={handleSignIn} >
         <div className='flex flex-col items-center gap-3 '>
           <h1>Entrar</h1>
           

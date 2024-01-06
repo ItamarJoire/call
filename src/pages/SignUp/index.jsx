@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../../contexts/auth'
 
 import logo from '../../assets/logo.png'
 
@@ -8,20 +9,30 @@ export default function SignUp(){
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const { signUp, loadingAuth } = useContext(AuthContext)
+
+  async function handleSubmit(e){
+    e.preventDefault()
+
+    if(name !== '' && email !== '' && password !== ''){
+      await signUp(email, password, name)
+    }
+  }
+
   return(
     <div className='flex flex-col items-center'>
       <div className='h-44 w-44'>
         <img src={logo} alt="Logo do sistema de chamadas" />
       </div>
 
-      <form action="" >
+      <form onSubmit={handleSubmit} >
         <div className='flex flex-col items-center gap-3 '>
           <h1>Nova conta</h1>
           <input 
             className='mt-4 py-2 pl-2 w-80 rounded-md'
             type="text" 
             placeholder='Nome'
-            value={email}
+            value={name}
             onChange={(e) => setName(e.target.value)}
           />
 
@@ -41,7 +52,10 @@ export default function SignUp(){
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <input className='cursor-pointer w-80 py-3 font-medium text-center bg-indigo-500 hover:bg-indigo-700 rounded-md' type="submit" value="Cadastrar" />
+          <button className='cursor-pointer w-80 py-3 font-medium text-center bg-indigo-500 hover:bg-indigo-700 rounded-md' type="submit"
+          >
+            {loadingAuth ? 'Carregando...' : 'Cadastrar'}  
+          </button>
         
           <Link to="/">Já possui uma conta? Faça login</Link>
         </div>
