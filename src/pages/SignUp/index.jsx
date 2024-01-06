@@ -18,7 +18,7 @@ export default function SignUp(){
         <div className='flex flex-col items-center gap-3 '>
           <h1>Nova conta</h1>
           <input 
-            className='mt-4 py-2 pl-2 rounded-md'
+            className='mt-4 py-2 pl-2 w-80 rounded-md'
             type="text" 
             placeholder='Nome'
             value={email}
@@ -26,7 +26,7 @@ export default function SignUp(){
           />
 
           <input 
-            className=' py-2 pl-2 rounded-md'
+            className=' py-2 pl-2 w-80 rounded-md'
             type="text" 
             placeholder='Email'
             value={email}
@@ -34,14 +34,14 @@ export default function SignUp(){
           />
 
           <input 
-            className='py-2 pl-2 rounded-md'
+            className='py-2 pl-2 w-80 rounded-md'
             type="password" 
             placeholder='Senha'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <input className='cursor-pointer w-48 py-3 font-medium text-center bg-indigo-500 hover:bg-indigo-700 rounded-md' type="submit" value="Cadastrar" />
+          <input className='cursor-pointer w-80 py-3 font-medium text-center bg-indigo-500 hover:bg-indigo-700 rounded-md' type="submit" value="Cadastrar" />
         
           <Link to="/">Já possui uma conta? Faça login</Link>
         </div>
