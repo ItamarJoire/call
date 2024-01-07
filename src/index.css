@@ -23,13 +23,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body{
-  margin: 48px;
-}
-
 a {
   font-weight: 500;
-  color: #646cff;
+  /* color: #646cff; */
   text-decoration: inherit;
 }
 
