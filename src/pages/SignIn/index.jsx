@@ -8,13 +8,13 @@ export default function SignIn(){
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const { signIn } = useContext(AuthContext)
+  const { signIn, loadingAuth } = useContext(AuthContext)
 
-  function handleSignIn(e){
+  async function handleSignIn(e){
     e.preventDefault()
 
     if(email !== '' && password !== ''){
-      signIn(email, password)
+      await signIn(email, password)
     }
   }
 
@@ -44,7 +44,10 @@ export default function SignIn(){
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <input className='cursor-pointer w-80 py-3 font-medium text-center bg-indigo-500 hover:bg-indigo-700 rounded-md' type="submit" value="Acessar" />
+          <button className='cursor-pointer w-80 py-3 font-medium text-center bg-indigo-500 hover:bg-indigo-700 rounded-md' type="submit"
+          >
+            {loadingAuth ? 'Carregando...' : 'Acessar'}  
+          </button>
         
           <Link to="/register">Criar uma conta</Link>
         </div>
